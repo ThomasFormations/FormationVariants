@@ -4,3 +4,6 @@ https://www.ebi.ac.uk/sites/ebi.ac.uk/files/content.ebi.ac.uk/materials/2014/140
 
 - Calling variants with GATK and with samtools  
 https://angus.readthedocs.io/en/2013/snp_tutorial.html
+
+- variant detection on exeom data  
+https://www.sciencedirect.com/science/article/pii/S2666166722002982
