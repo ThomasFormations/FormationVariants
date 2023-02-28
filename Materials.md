@@ -7,3 +7,7 @@ https://angus.readthedocs.io/en/2013/snp_tutorial.html
 
 - variant detection on exeom data  
 https://www.sciencedirect.com/science/article/pii/S2666166722002982
+
+- The evaluation of Bcftools mpileup and GATK HaplotypeCaller for variant calling in non-human species  
+https://www.nature.com/articles/s41598-022-15563-2
+
