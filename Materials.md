@@ -11,3 +11,6 @@ https://www.sciencedirect.com/science/article/pii/S2666166722002982
 - The evaluation of Bcftools mpileup and GATK HaplotypeCaller for variant calling in non-human species  
 https://www.nature.com/articles/s41598-022-15563-2
 
+- Summoning insights: NGS variant calling best practices  
+https://www.ogt.com/ca/about-us/ogt-blog/summoning-insights-ngs-variant-calling-best-practices/
+
