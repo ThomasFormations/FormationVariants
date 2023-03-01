@@ -14,3 +14,5 @@ https://www.nature.com/articles/s41598-022-15563-2
 - Summoning insights: NGS variant calling best practices  
 https://www.ogt.com/ca/about-us/ogt-blog/summoning-insights-ngs-variant-calling-best-practices/
 
+- Sequencing depth and coverage: key considerations in genomic analyses  
+https://www.nature.com/articles/nrg3642
