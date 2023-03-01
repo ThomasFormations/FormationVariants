@@ -16,3 +16,7 @@ https://www.ogt.com/ca/about-us/ogt-blog/summoning-insights-ngs-variant-calling-
 
 - Sequencing depth and coverage: key considerations in genomic analyses  
 https://www.nature.com/articles/nrg3642
+
+- How to calculate the coverage for a NGS experiment  
+https://www.ecseq.com/support/ngs/how-to-calculate-the-coverage-for-a-sequencing-experiment
+
