@@ -8,7 +8,7 @@ https://ucdavis-bioinformatics-training.github.io/2019-Alliance-for-Global-Healt
 - Calling variants with GATK and with samtools  
 https://angus.readthedocs.io/en/2013/snp_tutorial.html
 
-- Variant calling and filtering for INDELs
+- Variant calling and filtering for INDELs  
 https://genome.sph.umich.edu/w/images/b/b4/Variant_Calling_and_Filtering_for_INDELs.pdf
 
 
