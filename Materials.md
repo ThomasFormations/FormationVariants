@@ -35,3 +35,5 @@ https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02160-7
 - Accurate genotyping across variant classes and lengths using variant graphs  
 https://www.nature.com/articles/s41588-018-0145-5
 
+- Genotype and SNP calling from next-generation sequencing data  
+https://www.nature.com/articles/nrg2986
