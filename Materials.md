@@ -27,3 +27,5 @@ https://www.nature.com/articles/nrg3642
 - How to calculate the coverage for a NGS experiment  
 https://www.ecseq.com/support/ngs/how-to-calculate-the-coverage-for-a-sequencing-experiment
 
+- Removing reference bias and improving indel calling in ancient DNA data analysis by mapping to a sequence variation graph  
+https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02160-7
