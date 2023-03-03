@@ -31,3 +31,7 @@ https://www.ecseq.com/support/ngs/how-to-calculate-the-coverage-for-a-sequencing
 
 - Removing reference bias and improving indel calling in ancient DNA data analysis by mapping to a sequence variation graph  
 https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02160-7
+
+- Accurate genotyping across variant classes and lengths using variant graphs  
+https://www.nature.com/articles/s41588-018-0145-5
+
