@@ -75,7 +75,7 @@ bwa mem  -R "@RG\tID:MAMBO\tLB:MAMBO\tPL:ILLUMINA\tSM:MAMBO" \
                  data/fastq/MAMBO_R2.fastq.gz > mapping/MAMBO.sam
 ```
 Comment procéder pour utiliser 4 processeurs au lieu d'un seul ? Et en utilisant le nombre maximum de processeurs de votre machine ?
-Comme, selon vous, cette parallèlisation se fait-elle ?
+Comment, selon vous, cette parallèlisation se fait-elle ?
 
 Afin de pouvoir travailler avec le fichier sortie sam, on procède à son tri et à une indexation après transformation en fichier bam
 ```
@@ -104,12 +104,50 @@ Les deux approches permettent de détecter simultanément les variants sur l'ens
 ```
 ls mapping/*.bam > bamlist.txt
 bcftools mpileup -Ou -f data/ref/reference.fa.gz --bam-list bamlist.txt | bcftools call -mv -Ov -o variants/bcftools_calls.vcf
+bcftools stats variants/bcftools_calls.vcf > variants/bcftools_calls.vcf.stats
 ```
 
 #### freebayes
 
 ```
 freebayes -f data/ref/reference.fa.gz mapping/MAMBO.bam mapping/SALSA.bam mapping/TANGO.bam mapping/ZOUK.bam > variants/freebayes_calls.vcf
+bcftools stats variants/freebavariants/freebayes_calls.vcfyes_calls.vcf > variants/freebayes_calls.vcf.stats
+```
+Que peut-on dire de la différence du nombre de variants entre les deux approches ?
+
+On propose de filter les variants sur la qualité
+```
+cat variants/freebayes_calls.vcf | vcffilter  -f "QUAL > 20" > variants/freebayes_calls.q20.vcf
+bcftools stats variants/freebayes_calls.q20.vcf > variants/freebayes_calls.q20.vcf.stats
 ```
 
+### Annotation des variants
 
+#### Récupération de la base de données du génome bovin
+
+```
+snpEff download -v ARS-UCD1.2.105
+```
+ou
+```
+mkdir -p data/snpEffdatabases
+cd data/snpEffdatabases
+wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/ARS-UCD1.2.105.bz2
+```
+
+#### Annotation
+
+```
+snpEff -v ARS-UCD1.2.105 variants/bcftools_calls.vcf > variants/bcftools_calls.annotated.vcf
+```
+
+```
+snpEff -v ARS-UCD1.2.105 variants/freebayes_calls.q20.vcf > variants/freebayes_calls.q20.annotated.vcf
+```
+
+Le logiciel snpEff fournit en sortie un fichier de synthèse.
+
+Quel est le variant le plus sévère détecté par les deux logiciels ?  
+A l'aide du logiciel igv, regader au voisinage de ce variant, les lectures (fichiers bam) et les génotypes (fichier vcf).
+
+Que peut-on dire de ces génotypes ?
