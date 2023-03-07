@@ -9,7 +9,8 @@ Les différentes étapes ci-dessous vont nous guider dans ce travail.
 
 #### Création de l'environement conda.
 ```
-mamba create -n hornless -f environment.yaml
+wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/environment.yml
+mamba env create -f environment.yml
 ```
 
 #### Création de l'arborescence
@@ -22,5 +23,17 @@ mkdir -p data/fastq
 ### Récupération ds données
 ```
 cd data/ref
-wget 
+wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/reference.fa
+wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/reference.gff3.bgz
+cd ../data/fastq
+wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/MAMBO_R1.fastq.gz
+wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/MAMBO_R2.fastq.gz
+wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/SALSA_R1.fastq.gz
+wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/SALSA_R2.fastq.gz
+wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/TANGO_R1.fastq.gz
+wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/TANGO_R2.fastq.gz
+wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/ZOUK_R1.fastq.gz
+wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/ZOUK_R2.fastq.gz
+```
+
 
