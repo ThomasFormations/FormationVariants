@@ -13,6 +13,7 @@ Les différentes étapes ci-dessous vont nous guider dans ce travail.
 ```
 wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/environment.yml
 mamba env create -f environment.yml
+conda activate polled
 ```
 
 #### Création de l'arborescence
@@ -27,7 +28,7 @@ mkdir -p variants
 cd data/ref
 wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/reference.fa.gz
 wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/reference.gff3.bgz
-cd ../data/fastq
+cd ../fastq
 wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/MAMBO_R1.fastq.gz
 wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/MAMBO_R2.fastq.gz
 wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/SALSA_R1.fastq.gz
@@ -36,7 +37,10 @@ wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/TANGO_R1.fastq.
 wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/TANGO_R2.fastq.gz
 wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/ZOUK_R1.fastq.gz
 wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/ZOUK_R2.fastq.gz
+cd ../..
 ```
+Jeter un coup d'oeil aux fichiers fastq. Quel est le format d'un fichier fastq ?
+
 ### Qualité des lectures
 
 A l'aide du logiciel FASTQ (https://www.bioinformatics.babraham.ac.uk/projects/fastqc) déjà dans votre environnement, vérifiez la qualité des lectures
@@ -65,7 +69,7 @@ samtools faidx data/ref/reference.fa.gz
 ```
 bwa index data/ref/reference.fa.gz
 ```
-Quelle est la différence entre ces deux types d'inexation ?
+1. Quelle est la différence entre ces deux types d'indexation ?
 
 #### Alignement des lectures
 ```
@@ -74,24 +78,26 @@ bwa mem  -R "@RG\tID:MAMBO\tLB:MAMBO\tPL:ILLUMINA\tSM:MAMBO" \
                  data/fastq/MAMBO_R1.fastq.gz \
                  data/fastq/MAMBO_R2.fastq.gz > mapping/MAMBO.sam
 ```
-Comment procéder pour utiliser 4 processeurs au lieu d'un seul ? Et en utilisant le nombre maximum de processeurs de votre machine ?
-Comment, selon vous, cette parallèlisation se fait-elle ?
+Jeter un coup d'oeil aux fichiers sam. Quel est le format d'un fichier fastq ?
+
+2. Comment procéder pour utiliser 4 processeurs au lieu d'un seul ? Et en utilisant le nombre maximum de processeurs de votre machine ?
+3. Comment, selon vous, cette parallèlisation se fait-elle ?
 
 Afin de pouvoir travailler avec le fichier sortie sam, on procède à son tri et à une indexation après transformation en fichier bam
 ```
 samtools sort mapping/MAMBO.sam -OBAM -o mapping/MAMBO.bam
 samtools index mapping/MAMBO.bam
 ```
-Proposer à l'aide d'un pipe, une solution permettant d'éviter le passage par un fichier intermédiaire .sam.  
+4. Proposer à l'aide d'un pipe, une solution permettant d'éviter le passage par un fichier intermédiaire .sam.  
 
 Les utilitaires samtools stats et samtools flagstats permettent d'obtenir des statistiques sur les alignemnts
 ```
 samtools stats mapping/MAMBO.bam > mapping/MAMBO.bam.stats
 samtools flagstats mapping/MAMBO.bam > mapping/MAMBO.bam.flagtstats
 ```
-En vous inspirant de la boucle for ci-dessus, écrire quelques lignes de codes permettant de réaliser tous les alignements, es les fichiers d'index associés et les statistiques.
+5. En vous inspirant de la boucle for ci-dessus, écrire quelques lignes de codes permettant de réaliser tous les alignements, es les fichiers d'index associés et les statistiques.
 
-En utilisant l'outil ```multiqc``` (dans votre environnement) produire les fichiers de synthèse des différentes statistiques (cf la documentation de multiqc, https://multiqc.info/docs).
+6. En utilisant l'outil ```multiqc``` (dans votre environnement) produire les fichiers de synthèse des différentes statistiques (cf la documentation de multiqc, https://multiqc.info/docs).
 
 ### Détection de variants
 
@@ -111,10 +117,11 @@ bcftools stats variants/bcftools_calls.vcf > variants/bcftools_calls.vcf.stats
 
 ```
 zcat data/ref/reference.fa.gz > data/ref/reference.fa
-freebayes -f data/ref/reference.fa.gz mapping/MAMBO.bam mapping/SALSA.bam mapping/TANGO.bam mapping/ZOUK.bam > variants/freebayes_calls.vcf
-bcftools stats variants/freebavariants/freebayes_calls.vcfyes_calls.vcf > variants/freebayes_calls.vcf.stats
+samtools faidx  data/ref/reference.fa
+freebayes -f data/ref/reference.fa mapping/MAMBO.bam mapping/SALSA.bam mapping/TANGO.bam mapping/ZOUK.bam > variants/freebayes_calls.vcf
+bcftools stats variants/freebayes_calls.vcf > variants/freebayes_calls.vcf.stats
 ```
-Que peut-on dire de la différence du nombre de variants entre les deux approches ?
+7. Que peut-on dire de la différence du nombre de variants entre les deux approches ?
 
 On propose de filter les variants sur la qualité
 ```
