@@ -2,6 +2,9 @@
 - A simple SNP calling pipaline
 https://www.ebi.ac.uk/sites/ebi.ac.uk/files/content.ebi.ac.uk/materials/2014/140217_AgriOmics/dan_bolser_snp_calling.pdf
 
+- formation_variants_detection_2017  
+https://wikis.univ-lille.fr/bilille/_media/formation_variants_detection_2017.pdf
+
 - Variant Calling (SNPs/INDELs)  
 https://ucdavis-bioinformatics-training.github.io/2019-Alliance-for-Global-Health-and-Science-Makerere-University_Variants/variant_analysis/variant_calling.html
 
