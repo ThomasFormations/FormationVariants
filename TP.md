@@ -21,7 +21,7 @@ mkdir -p data/fastq
 ### Récupération ds données
 ```
 cd data/ref
-wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/reference.fa
+wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/reference.fa.gz
 wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/reference.gff3.bgz
 cd ../data/fastq
 wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/MAMBO_R1.fastq.gz
