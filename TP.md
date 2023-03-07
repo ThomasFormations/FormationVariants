@@ -15,8 +15,6 @@ mamba env create -f environment.yml
 
 #### Création de l'arborescence
 ```
-mkdir TP
-cd TP
 mkdir -p data/ref
 mkdir -p data/fastq
 ```
