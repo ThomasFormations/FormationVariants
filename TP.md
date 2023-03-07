@@ -75,6 +75,7 @@ bwa mem  -R "@RG\tID:MAMBO\tLB:MAMBO\tPL:ILLUMINA\tSM:MAMBO" \
                  data/fastq/MAMBO_R2.fastq.gz > mapping/MAMBO.sam
 ```
 Comment procéder pour utiliser 4 processeurs au lieu d'un seul ? Et en utilisant le nombre maximum de processeurs de votre machine ?
+Comme, selon vous, cette parallèlisation se fait-elle ?
 
 Afin de pouvoir travailler avec le fichier sortie sam, on procède à son tri et à une indexation après transformation en fichier bam
 ```
