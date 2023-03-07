@@ -11,3 +11,16 @@ Les différentes étapes ci-dessous vont nous guider dans ce travail.
 ```
 mamba create -n hornless -f environment.yaml
 ```
+
+#### Création de l'arborescence
+```
+mkdir TP
+cd TP
+mkdir -p data/ref
+mkdir -p data/fastq
+```
+### Récupération ds données
+```
+cd data/ref
+wget 
+
