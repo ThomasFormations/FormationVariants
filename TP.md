@@ -39,7 +39,9 @@ wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/ZOUK_R1.fastq.g
 wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/ZOUK_R2.fastq.gz
 cd ../..
 ```
-Jeter un coup d'oeil aux fichiers fastq. Quel est le format d'un fichier fastq ?
+Jeter un coup d'oeil aux fichiers fastq. 
+
+1. Quel est le format d'un fichier fastq ?
 
 ### Qualité des lectures
 
@@ -69,7 +71,7 @@ samtools faidx data/ref/reference.fa.gz
 ```
 bwa index data/ref/reference.fa.gz
 ```
-1. Quelle est la différence entre ces deux types d'indexation ?
+2. Quelle est la différence entre ces deux types d'indexation ?
 
 #### Alignement des lectures
 ```
@@ -78,26 +80,27 @@ bwa mem  -R "@RG\tID:MAMBO\tLB:MAMBO\tPL:ILLUMINA\tSM:MAMBO" \
                  data/fastq/MAMBO_R1.fastq.gz \
                  data/fastq/MAMBO_R2.fastq.gz > mapping/MAMBO.sam
 ```
-Jeter un coup d'oeil aux fichiers sam. Quel est le format d'un fichier fastq ?
+Jeter un coup d'oeil aux fichiers sam. 
 
-2. Comment procéder pour utiliser 4 processeurs au lieu d'un seul ? Et en utilisant le nombre maximum de processeurs de votre machine ?
-3. Comment, selon vous, cette parallèlisation se fait-elle ?
+3. Quel est le format d'un fichier sam ?
+4. Comment procéder pour utiliser 4 processeurs au lieu d'un seul ? Et en utilisant le nombre maximum de processeurs de votre machine ?
+5. Comment, selon vous, cette parallèlisation se fait-elle ?
 
 Afin de pouvoir travailler avec le fichier sortie sam, on procède à son tri et à une indexation après transformation en fichier bam
 ```
 samtools sort mapping/MAMBO.sam -OBAM -o mapping/MAMBO.bam
 samtools index mapping/MAMBO.bam
 ```
-4. Proposer à l'aide d'un pipe, une solution permettant d'éviter le passage par un fichier intermédiaire .sam.  
+6. Proposer à l'aide d'un pipe, une solution permettant d'éviter le passage par un fichier intermédiaire .sam.  
 
 Les utilitaires samtools stats et samtools flagstats permettent d'obtenir des statistiques sur les alignemnts
 ```
 samtools stats mapping/MAMBO.bam > mapping/MAMBO.bam.stats
 samtools flagstats mapping/MAMBO.bam > mapping/MAMBO.bam.flagtstats
 ```
-5. En vous inspirant de la boucle for ci-dessus, écrire quelques lignes de codes permettant de réaliser tous les alignements, es les fichiers d'index associés et les statistiques.
+7. En vous inspirant de la boucle for ci-dessus, écrire quelques lignes de codes permettant de réaliser tous les alignements, es les fichiers d'index associés et les statistiques.
 
-6. En utilisant l'outil ```multiqc``` (dans votre environnement) produire les fichiers de synthèse des différentes statistiques (cf la documentation de multiqc, https://multiqc.info/docs).
+8. En utilisant l'outil ```multiqc``` (dans votre environnement) produire les fichiers de synthèse des différentes statistiques (cf la documentation de multiqc, https://multiqc.info/docs).
 
 ### Détection de variants
 
@@ -121,7 +124,7 @@ samtools faidx  data/ref/reference.fa
 freebayes -f data/ref/reference.fa mapping/MAMBO.bam mapping/SALSA.bam mapping/TANGO.bam mapping/ZOUK.bam > variants/freebayes_calls.vcf
 bcftools stats variants/freebayes_calls.vcf > variants/freebayes_calls.vcf.stats
 ```
-7. Que peut-on dire de la différence du nombre de variants entre les deux approches ?
+9. Que peut-on dire de la différence du nombre de variants entre les deux approches ?
 
 On propose de filter les variants sur la qualité
 ```
@@ -155,7 +158,7 @@ snpEff -v ARS-UCD1.2.105 variants/freebayes_calls.q20.vcf > variants/freebayes_c
 
 Le logiciel snpEff fournit en sortie un fichier de synthèse.
 
-Quel est le variant le plus sévère détecté par les deux logiciels ?  
+10. Quel est le variant le plus sévère détecté par les deux logiciels ?  
 A l'aide du logiciel igv, regader au voisinage de ce variant, les lectures (fichiers bam) et les génotypes (fichier vcf).
 
-Que peut-on dire de ces génotypes ?
+11. Que peut-on dire de ces génotypes ?
