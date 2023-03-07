@@ -110,6 +110,7 @@ bcftools stats variants/bcftools_calls.vcf > variants/bcftools_calls.vcf.stats
 #### freebayes
 
 ```
+zcat data/ref/reference.fa.gz > data/ref/reference.fa
 freebayes -f data/ref/reference.fa.gz mapping/MAMBO.bam mapping/SALSA.bam mapping/TANGO.bam mapping/ZOUK.bam > variants/freebayes_calls.vcf
 bcftools stats variants/freebavariants/freebayes_calls.vcfyes_calls.vcf > variants/freebayes_calls.vcf.stats
 ```
