@@ -1,4 +1,4 @@
-# FormationsVariants
+# Formation Variants
 
 ### Introduction
 
