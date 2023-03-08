@@ -103,13 +103,13 @@ Les utilitaires samtools stats et samtools flagstats permettent d'obtenir des st
 samtools stats mapping/MAMBO.bam > mapping/MAMBO.bam.stats
 samtools flagstats mapping/MAMBO.bam > mapping/MAMBO.bam.flagtstats
 ```
-11. En vous inspirant de la boucle for ci-dessus, écrire quelques lignes de codes permettant de réaliser tous les alignements, es les fichiers d'index associés et les statistiques.
+11. En vous inspirant de la boucle for ci-dessus, écrire quelques lignes de codes permettant de réaliser tous les alignements, et les fichiers d'index associés et les statistiques.
 
 12. En utilisant l'outil ```multiqc``` (dans votre environnement) produire les fichiers de synthèse des différentes statistiques (cf la documentation de multiqc, https://multiqc.info/docs).
 
 ### Détection de variants
 
-Pour la détection de variants nous utiliserons deux approches, en utilisant d'une par l'outil ```bcftools``` (commandes ```mpileup``` et ```calls``` et d'autre part l'outil ```freebayes```.
+Pour la détection de variants nous utiliserons deux approches, en utilisant d'une par l'outil ```bcftools``` (commandes ```mpileup``` et ```calls```) et d'autre part l'outil ```freebayes```.
 
 Les deux approches permettent de détecter simultanément les variants sur l'ensemble des individus.
 
@@ -122,6 +122,11 @@ bcftools stats variants/bcftools_calls.vcf > variants/bcftools_calls.vcf.stats
 ```
 13. Quel est le format d'un fichier vcf ?
 14. Que contient le champ de FORMAT PL ?
+15. En utilisant la commande ```query``` de bcftools afficher dans le terminal, pour chaque variant les informations suivantes
+```
+CHROM POS QUAL AC G1 G2 G3 G4
+```
+chromosome, position, mesure de qualité du variant, AC le nombre d'allèles alternatifs et les génotypes pour les 4 individus.
 
 #### freebayes
 
