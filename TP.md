@@ -39,12 +39,11 @@ wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/ZOUK_R1.fastq.g
 wget https://genoweb.toulouse.inra.fr/~faraut/FormationM12023/TP/ZOUK_R2.fastq.gz
 cd ../..
 ```
-Jeter un coup d'oeil aux fichiers fastq. 
-
-1. Quel est le format d'un fichier fastq ?
-2. Quelle est la signification de la mesure de qualité d'une base lue ?
 
 ### Qualité des lectures
+
+1. Quel est le format d'un fichier fastq ?
+3. Quelle est la signification de la mesure de qualité d'une base lue ?
 
 A l'aide du logiciel FASTQ (https://www.bioinformatics.babraham.ac.uk/projects/fastqc) déjà dans votre environnement, vérifiez la qualité des lectures
 ```
@@ -88,24 +87,25 @@ Jeter un coup d'oeil aux fichiers sam.
 6. Comment procéder pour utiliser 4 processeurs au lieu d'un seul ? Et en utilisant le nombre maximum de processeurs de votre machine ?
 7. Comment, selon vous, cette parallèlisation se fait-elle ?
 
-Afin de pouvoir travailler avec le fichier sortie sam, on procède à son tri et à une indexation après transformation en fichier bam.
-
-8. Que permet ici l'indexation ?
+Afin de pouvoir travailler avec le fichier sortie sam, on procède à une transformation en fichier .bam, à son tri et à son indexation.
 
 ```
 samtools sort mapping/MAMBO.sam -OBAM -o mapping/MAMBO.bam
 samtools index mapping/MAMBO.bam
 ```
-9. Proposer à l'aide d'un pipe, une solution permettant d'éviter le passage par un fichier intermédiaire .sam.  
+8. Quelle est la différence entre le format bam et le format sam ?
+9. Que permet ici l'indexation ?
+
+10. Proposer à l'aide d'un pipe, une solution permettant d'éviter le passage par un fichier intermédiaire .sam.  
 
 Les utilitaires samtools stats et samtools flagstats permettent d'obtenir des statistiques sur les alignemnts
 ```
 samtools stats mapping/MAMBO.bam > mapping/MAMBO.bam.stats
 samtools flagstats mapping/MAMBO.bam > mapping/MAMBO.bam.flagtstats
 ```
-10. En vous inspirant de la boucle for ci-dessus, écrire quelques lignes de codes permettant de réaliser tous les alignements, es les fichiers d'index associés et les statistiques.
+11. En vous inspirant de la boucle for ci-dessus, écrire quelques lignes de codes permettant de réaliser tous les alignements, es les fichiers d'index associés et les statistiques.
 
-11. En utilisant l'outil ```multiqc``` (dans votre environnement) produire les fichiers de synthèse des différentes statistiques (cf la documentation de multiqc, https://multiqc.info/docs).
+12. En utilisant l'outil ```multiqc``` (dans votre environnement) produire les fichiers de synthèse des différentes statistiques (cf la documentation de multiqc, https://multiqc.info/docs).
 
 ### Détection de variants
 
@@ -120,7 +120,8 @@ ls mapping/*.bam > bamlist.txt
 bcftools mpileup -Ou -f data/ref/reference.fa.gz --bam-list bamlist.txt | bcftools call -mv -Ov -o variants/bcftools_calls.vcf
 bcftools stats variants/bcftools_calls.vcf > variants/bcftools_calls.vcf.stats
 ```
-12. Quel est le format d'un fichier vcf ?
+13. Quel est le format d'un fichier vcf ?
+14. Que contient le champ de FORMAT PL ?
 
 #### freebayes
 
@@ -130,14 +131,14 @@ samtools faidx  data/ref/reference.fa
 freebayes -f data/ref/reference.fa mapping/MAMBO.bam mapping/SALSA.bam mapping/TANGO.bam mapping/ZOUK.bam > variants/freebayes_calls.vcf
 bcftools stats variants/freebayes_calls.vcf > variants/freebayes_calls.vcf.stats
 ```
-13. Que peut-on dire de la différence du nombre de variants entre les deux approches ?
+15. Que peut-on dire de la différence du nombre de variants entre les deux approches ?
 
 On propose de filter les variants sur la qualité
 ```
 cat variants/freebayes_calls.vcf | vcffilter  -f "QUAL > 20" > variants/freebayes_calls.q20.vcf
 bcftools stats variants/freebayes_calls.q20.vcf > variants/freebayes_calls.q20.vcf.stats
 ```
-14. Quelle est la signification de la mesure de qualité d'un variant ?
+16. Quelle est la signification de la mesure de qualité d'un variant ?
 
 ### Annotation des variants
 
@@ -167,7 +168,7 @@ snpEff -v ARS-UCD1.2.105 -datadir $PWD/data/snpEffdatabases variants/freebayes_c
 
 Le logiciel snpEff fournit en sortie un fichier de synthèse.
 
-15. Quel est le variant le plus sévère détecté par les deux logiciels ?  
+17. Quel est le variant le plus sévère détecté par les deux logiciels ? (indice rechercher une mutation non-sens) 
 A l'aide du logiciel igv, regader au voisinage de ce variant, les lectures (fichiers bam) et les génotypes (fichier vcf).
 
-16. Que peut-on dire de ces génotypes ?
+18. Que peut-on dire de ces génotypes ?
