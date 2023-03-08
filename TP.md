@@ -117,7 +117,7 @@ Les deux approches permettent de détecter simultanément les variants sur l'ens
 
 ```
 ls mapping/*.bam > bamlist.txt
-bcftools mpileup -Ou -f data/ref/reference.fa.gz --bam-list bamlist.txt | bcftools call -mv -Ov -o variants/bcftools_calls.vcf
+bcftools mpileup -a AD -Ou -f data/ref/reference.fa.gz --bam-list bamlist.txt | bcftools call -mv -Ov -o variants/bcftools_calls.vcf
 bcftools stats variants/bcftools_calls.vcf > variants/bcftools_calls.vcf.stats
 ```
 13. Quel est le format d'un fichier vcf ?
