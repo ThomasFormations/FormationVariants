@@ -15,8 +15,8 @@ https://www.nature.com/articles/s41587-021-01102-3
 **Insights into human genetic variation and population history from 929 diverse genomes**  
 https://www.science.org/doi/10.1126/science.aay5012
 
-1.
-2.
+1. Décrire la procédure pour la détection de SNP
+2. 
 3. 
 
 ---
