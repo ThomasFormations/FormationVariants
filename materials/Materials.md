@@ -2,6 +2,12 @@
 - A simple SNP calling pipaline
 https://www.ebi.ac.uk/sites/ebi.ac.uk/files/content.ebi.ac.uk/materials/2014/140217_AgriOmics/dan_bolser_snp_calling.pdf
 
+- A_beginners_guide_to_Call_SNPs_and_indels_Part_II  
+https://yulijia.net/slides/bioinfomatcis_for_medical_students/2019-07-31-A_beginners_guide_to_Call_SNPs_and_indels_Part_II.html
+
+- Introduction to Variant Discovery with GATK Best Practices  
+https://qcb.ucla.edu/wp-content/uploads/sites/14/2016/03/GATKwr12-1-GATK_primer.pdf
+
 - formation_variants_detection_2017  
 https://wikis.univ-lille.fr/bilille/_media/formation_variants_detection_2017.pdf
 
