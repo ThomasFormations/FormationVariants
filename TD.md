@@ -23,3 +23,17 @@ https://www.science.org/doi/10.1126/science.aay5012
 
 **Genomic Analysis of European Drosophila melanogaster Populations Reveals Longitudinal Structure, Continent-Wide Selection, and Previously Unknown DNA Viruses**  
 https://academic.oup.com/mbe/article/37/9/2661/5837682
+
+---
+**Moss enables high sensitivity single-nucleotide variant calling from multiple bulk DNA tumor samples**  
+https://www.nature.com/articles/s41467-021-22466-9
+
+---
+
+**Accurate somatic variant detection using weakly supervised deep learning**  
+https://www.nature.com/articles/s41467-022-31765-8
+
+
+
+
+
