@@ -11,6 +11,8 @@ https://qcb.ucla.edu/wp-content/uploads/sites/14/2016/03/GATKwr12-1-GATK_primer.
 - Genotype likelihood  
 https://gatk.broadinstitute.org/hc/en-us/articles/360035890731-Likelihoods-and-Probabilities
 
+- Computing Genotype likelihoods  
+https://eriqande.github.io/eca-bioinf-handbook/variant-calling.html
 
 - formation_variants_detection_2017  
 https://wikis.univ-lille.fr/bilille/_media/formation_variants_detection_2017.pdf
