@@ -14,6 +14,9 @@ https://gatk.broadinstitute.org/hc/en-us/articles/360035890731-Likelihoods-and-P
 - Computing Genotype likelihoods  
 https://eriqande.github.io/eca-bioinf-handbook/variant-calling.html
 
+- Calling joint genotyping  
+https://qcb.ucla.edu/wp-content/uploads/sites/14/2016/03/GATKwr12-5-Variant_calling_joint_genotyping.pdf
+
 - formation_variants_detection_2017  
 https://wikis.univ-lille.fr/bilille/_media/formation_variants_detection_2017.pdf
 
@@ -56,10 +59,13 @@ https://www.nature.com/articles/s41588-018-0145-5
 - Genotype and SNP calling from next-generation sequencing data  
 https://www.nature.com/articles/nrg2986
 
-Nucleotide diversity  
+- Nucleotide diversity  
 https://en.wikipedia.org/wiki/Zygosity#Heterozygosity_in_population_genetics
 
 https://en.wikipedia.org/wiki/Nucleotide_diversity
+
+- Mendel and IA  
+https://www.nature.com/articles/s41431-023-01303-1
 
 #### Articles  proposés 
 
