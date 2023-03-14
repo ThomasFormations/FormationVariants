@@ -80,4 +80,7 @@ github: https://github.com/zjshi/gt-pro
 Genomic Analysis of European Drosophila melanogaster Populations Reveals Longitudinal Structure, Continent-Wide Selection, and Previously Unknown DNA Viruses  
 https://academic.oup.com/mbe/article/37/9/2661/5837682
 
+mpileup with pysam  
+https://jeremy9959.net/Blog/SamtoolsVsPysam-fixed/
 
+mpileup in python
