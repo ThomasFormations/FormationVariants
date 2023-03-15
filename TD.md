@@ -13,7 +13,6 @@ https://www.nature.com/articles/s41587-021-01102-3
 
 ---
 
----
 **Moss enables high sensitivity single-nucleotide variant calling from multiple bulk DNA tumor samples**  
 https://www.nature.com/articles/s41467-021-22466-9
 
@@ -25,6 +24,8 @@ https://www.nature.com/articles/s41467-021-22466-9
 
 4. Quelle est la carcatéristique de l'outil MOSS qui lui permet de détecter des variants à faible fréquence que les autres outils ont du mal à détecter.
 
+---
+
 **KAGE: fast alignment-free graph-based genotyping of SNPs and short indels**  
 https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02771-2
 
@@ -35,25 +36,23 @@ https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02771-2
 *Questions addtionnelles*  
 4. Présentez si vous le pouvez le modèle probabiliste utilisé
 
-**Genomic Analysis of European Drosophila melanogaster Populations Reveals Longitudinal Structure, Continent-Wide Selection, and Previously Unknown DNA Viruses**  
-https://academic.oup.com/mbe/article/37/9/2661/5837682
-
-1. Quelle est l'approche choisie par les auteurs pour détecter les variants ? En quoi cette approche est adaptée aux questions scientifiques abordées par le papier ?
-2. 
-
 ---
 
-**Accurate somatic variant detection using weakly supervised deep learning**  
-https://www.nature.com/articles/s41467-022-31765-8
+**Accurate genotyping across variant classes and lengths using variant graphs**
+https://www.nature.com/articles/s41588-018-0145-5
 
-**Insights into human genetic variation and population history from 929 diverse genomes**  
-https://www.science.org/doi/10.1126/science.aay5012
+1. Qu'est-ce qui motive le développement d'un outil de génotypage utilisant un graphe de variation ?
+2. Décrire la méthode développé dans l'outil BayesTyper
+3. Comment les auteurs ont validé la méthode et quels sont les limites de l'outil
 
-1. Décrire la procédure pour la détection de SNP
-2. 
-3. 
+*Questions addtionnelles*  
 
----
+4. Pouvez-vous décrire dans les grandes lignes la méthode statistique développée dans le papier
+
+
+
+
+
 
 
 
