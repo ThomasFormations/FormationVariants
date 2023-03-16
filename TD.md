@@ -38,7 +38,7 @@ https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02771-2
 
 ---
 
-**Accurate genotyping across variant classes and lengths using variant graphs**
+**Accurate genotyping across variant classes and lengths using variant graphs**  
 https://www.nature.com/articles/s41588-018-0145-5
 
 1. Qu'est-ce qui motive le développement d'un outil de génotypage utilisant un graphe de variation ?
