@@ -111,7 +111,7 @@ samtools flagstats mapping/MAMBO.bam > mapping/MAMBO.bam.flagtstats
 
 15. En utilisant l'outil ```multiqc``` (dans votre environnement) produire les fichiers de synthèse des différentes statistiques (cf la documentation de multiqc, https://multiqc.info/docs).
 
-16. A l'aide de l'outil IGV visualiser les alignements.
+16. A l'aide de l'outil IGV visualiser les alignements de SALSA dans la région 28:6,050,303-6,053,006. Plusieurs alignements sont atypiques (de couleurs différentes), quelle en est la raison ?
 
 ### Détection de variants
 
@@ -184,9 +184,19 @@ A l'aide du logiciel igv, regader au voisinage de ce variant, les lectures (fich
 
 23. Que peut-on dire de ces génotypes ?
 
-24. 
+#### Supplementary materials
 
-https://en.wikipedia.org/wiki/Pileup_format#Column_6:_The_base_quality_string
+24. Le programme de détection de SNP bcftools se base sur une sortie dite mpileup
+
+```
+samtools mpileup mapping/SALSA.bam --reference data/ref/reference.fa > SALSA.mpileup
+```
+
+25. Extraire les lignes du fichier de sortie qui indiquent des différences par rapport à la référence (on pourra utiliser awk avec une expression régulière).
+
+26. En vous aidant de la documentation de [samtools-mpileup](http://www.htslib.org/doc/samtools-mpileup.html), expliquer ce que renvoie la fonction python suivante
+27. Comme peut-on utiliser cette fonction pour calculer la log-vraisemblance des génotypes ?
+
 
 ```python
 def parse_mpileup_line(sequence, phred, info)):
