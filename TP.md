@@ -255,7 +255,7 @@ def parse_mpileup_line(sequence, phred, info)):
             # No change in positionPhred because there is not Phred value
             # for the beginning of a sequence
         else:
-            print("Problem with letter: " + currentData)
+            print("Problem with letter: " + currentchar)
             print("in this cigar string: " + sequence)
             sys.exit(2)
 
