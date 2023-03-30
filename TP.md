@@ -240,7 +240,6 @@ def parse_mpileup_line(sequence, phred, info)):
             si += 1
             pi += 1
         elif currentchar == "+" or currentchar == "-":
-            letters['O'].append(-1)
             res = match(r"[+-](\d+)", sequence[si:len(sequence)])
             indelLength = res.groups()[0]
             si = si + 1 + len(indelLength) + int(indelLength)
