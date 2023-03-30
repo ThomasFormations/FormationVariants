@@ -184,26 +184,30 @@ A l'aide du logiciel igv, regader au voisinage de ce variant, les lectures (fich
 
 23. Que peut-on dire de ces génotypes ?
 
+24. 
+
+https://en.wikipedia.org/wiki/Pileup_format#Column_6:_The_base_quality_string
 
 ```python
-def parse_mpileup_line(input):
+def parse_mpileup_line(sequence, phred, info)):
     """
-    Open writing file and return file pointer.
-    An IOError is raised when the file cannot be opened.
+    parse a line of an mpileup output 
 
-    Keyword arguments:
-    sequence -- the read bases aligned at a specific position
-    phred    -- the base qualities for the same position
-    info     -- a dictionary containing the information about the reference base,
-                the position, the chromosome and the number of bases
+    Parameters:
+    mpileup_line -- a line of an mipileup output as a string
     """
-
-    ref = info['ref']
-
+    mpileup = mpileup_line.split("\t")
+    chrom = mpileup[0]
+    pos = mpileup[1]
+    ref = mpileup[2]
+    coverage = mpileup[4]
+    sequence = mpileup[5]
+    phred = mpileup[6]
+    
     # dictionary containing all (Phred score) tuple for each
     # base of the sequence
     letters = defaultdict(list)
-    lettersKeys = letters.keys()
+    nucleotides = ['A', 'C', 'G', 'T']
 
     sequence = sequence.upper()
 
@@ -220,7 +224,7 @@ def parse_mpileup_line(input):
             letters[ref].append(phredVal)
             si += 1
             pi += 1
-        elif currentchar in lettersKeys:
+        elif currentchar in nucleotides:
             phredVal = ord(phred[pi]) - asciiOffset
             letters[currentchar].append(phredVal)
             si += 1
@@ -234,7 +238,6 @@ def parse_mpileup_line(input):
         elif currentchar == ">" or currentchar == "<":
             # Reference skip (CIGAR "N")
             # Phred value available but skipped
-            # Mapq value available but skipped :wq
             si += 1
             pi += 1
         elif currentchar == "$":
