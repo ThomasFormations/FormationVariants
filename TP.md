@@ -41,9 +41,11 @@ cd ../..
 ```
 
 ### Qualité des lectures
-
-1. Quel est le format d'un fichier fastq ?
-3. Quelle est la signification de la mesure de qualité d'une base lue ?
+1. Vérifier que le format des fichiers fastq correspond bien au format attendu ?
+3. Quelle est la signification de la mesure de qualité d'une base lue ? Comment est-elle codée dans le fichier fastq ?
+4. Quelles sont les différents scores observés pour les 4 premières lectures du fichier SALSA_R1.fastq.gz ?
+5. A quelle probabilité d'erreur cela correspond-il ?  
+(Vous pourrez jeter un coup d'oeil à cette page https://people.duke.edu/~ccc14/duke-hts-2018/bioinformatics/quality_scores.html)
 
 A l'aide du logiciel FASTQ (https://www.bioinformatics.babraham.ac.uk/projects/fastqc) déjà dans votre environnement, vérifiez la qualité des lectures
 ```
@@ -59,6 +61,8 @@ done
 ```
 Les fichiers de synthèse de ces analyses se trouvent dans le répertoire ```data/fastq```
 
+5. Est-ce que cela correspond à ce qui avait été observé pour les 6 premières lectures de Salsa ?
+
 
 ### Alignement des lectures sur la référence
 
@@ -71,7 +75,7 @@ samtools faidx data/ref/reference.fa.gz
 ```
 bwa index data/ref/reference.fa.gz
 ```
-3. Quelle est la différence entre ces deux types d'indexation ?
+6. Quelle est la différence entre ces deux types d'indexation ?
 
 #### Alignement des lectures
 ```
@@ -82,10 +86,10 @@ bwa mem  -R "@RG\tID:MAMBO\tLB:MAMBO\tPL:ILLUMINA\tSM:MAMBO" \
 ```
 Jeter un coup d'oeil aux fichiers sam. 
 
-4. Quel est le format d'un fichier sam ?
-5. Quelle est la signification de la mesure de qualité d'un alignement ?
-6. Comment procéder pour utiliser 4 processeurs au lieu d'un seul ? Et en utilisant le nombre maximum de processeurs de votre machine ?
-7. Comment, selon vous, cette parallèlisation se fait-elle ?
+7. Jeter un coup d'oeil au format SAM ?
+8. Quelle est la signification de la mesure de qualité d'un alignement ?
+9. Comment procéder pour utiliser 4 processeurs au lieu d'un seul ? Et en utilisant le nombre maximum de processeurs de votre machine ?
+10. Comment, selon vous, cette parallèlisation se fait-elle ?
 
 Afin de pouvoir travailler avec le fichier sortie sam, on procède à une transformation en fichier .bam, à son tri et à son indexation.
 
@@ -93,19 +97,21 @@ Afin de pouvoir travailler avec le fichier sortie sam, on procède à une transf
 samtools sort mapping/MAMBO.sam -OBAM -o mapping/MAMBO.bam
 samtools index mapping/MAMBO.bam
 ```
-8. Quelle est la différence entre le format bam et le format sam ?
-9. Que permet ici l'indexation ?
+11. Quelle est la différence entre le format bam et le format sam ?
+12. Que permet ici l'indexation ?
 
-10. Proposer à l'aide d'un pipe, une solution permettant d'éviter le passage par un fichier intermédiaire .sam.  
+13. Proposer à l'aide d'un pipe, une solution permettant d'éviter le passage par un fichier intermédiaire .sam.  
 
 Les utilitaires samtools stats et samtools flagstats permettent d'obtenir des statistiques sur les alignemnts
 ```
 samtools stats mapping/MAMBO.bam > mapping/MAMBO.bam.stats
 samtools flagstats mapping/MAMBO.bam > mapping/MAMBO.bam.flagtstats
 ```
-11. En vous inspirant de la boucle for ci-dessus, écrire quelques lignes de codes permettant de réaliser tous les alignements, et les fichiers d'index associés et les statistiques.
+14. En vous inspirant de la boucle for ci-dessus, écrire quelques lignes de codes permettant de réaliser tous les alignements, et les fichiers d'index associés et les statistiques.
 
-12. En utilisant l'outil ```multiqc``` (dans votre environnement) produire les fichiers de synthèse des différentes statistiques (cf la documentation de multiqc, https://multiqc.info/docs).
+15. En utilisant l'outil ```multiqc``` (dans votre environnement) produire les fichiers de synthèse des différentes statistiques (cf la documentation de multiqc, https://multiqc.info/docs).
+
+16. A l'aide de l'outil IGV visualiser les alignements.
 
 ### Détection de variants
 
@@ -120,9 +126,9 @@ ls mapping/*.bam > bamlist.txt
 bcftools mpileup -a AD -Ou -f data/ref/reference.fa.gz --bam-list bamlist.txt | bcftools call -mv -Ov -o variants/bcftools_calls.vcf
 bcftools stats variants/bcftools_calls.vcf > variants/bcftools_calls.vcf.stats
 ```
-13. Quel est le format d'un fichier vcf ?
-14. Que contient le champ de FORMAT PL ?
-15. En utilisant la commande ```query``` de bcftools afficher dans le terminal, pour chaque variant les informations suivantes
+17. Quel est le format d'un fichier vcf ?
+18. Que contient le champ de FORMAT PL ?
+19. En utilisant la commande ```query``` de bcftools afficher dans le terminal, pour chaque variant les informations suivantes
 ```
 CHROM POS QUAL AC G1 G2 G3 G4
 ```
@@ -136,14 +142,14 @@ samtools faidx  data/ref/reference.fa
 freebayes -f data/ref/reference.fa mapping/MAMBO.bam mapping/SALSA.bam mapping/TANGO.bam mapping/ZOUK.bam > variants/freebayes_calls.vcf
 bcftools stats variants/freebayes_calls.vcf > variants/freebayes_calls.vcf.stats
 ```
-15. Que peut-on dire de la différence du nombre de variants entre les deux approches ?
+20. Que peut-on dire de la différence du nombre de variants entre les deux approches ?
 
 On propose de filter les variants sur la qualité
 ```
 cat variants/freebayes_calls.vcf | vcffilter  -f "QUAL > 20" > variants/freebayes_calls.q20.vcf
 bcftools stats variants/freebayes_calls.q20.vcf > variants/freebayes_calls.q20.vcf.stats
 ```
-16. Quelle est la signification de la mesure de qualité d'un variant ?
+21. Quelle est la signification de la mesure de qualité d'un variant ?
 
 ### Annotation des variants
 
@@ -173,7 +179,7 @@ snpEff -v ARS-UCD1.2.105 -datadir $PWD/data/snpEffdatabases variants/freebayes_c
 
 Le logiciel snpEff fournit en sortie un fichier de synthèse.
 
-17. Quel est le variant le plus sévère détecté par les deux logiciels ? (indice rechercher une mutation non-sens) 
+22. Quel est le variant le plus sévère détecté par les deux logiciels ? (indice rechercher une mutation non-sens) 
 A l'aide du logiciel igv, regader au voisinage de ce variant, les lectures (fichiers bam) et les génotypes (fichier vcf).
 
-18. Que peut-on dire de ces génotypes ?
+23. Que peut-on dire de ces génotypes ?
