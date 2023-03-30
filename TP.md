@@ -183,3 +183,79 @@ Le logiciel snpEff fournit en sortie un fichier de synthèse.
 A l'aide du logiciel igv, regader au voisinage de ce variant, les lectures (fichiers bam) et les génotypes (fichier vcf).
 
 23. Que peut-on dire de ces génotypes ?
+
+
+```python
+def parse_mpileup_line(input):
+    """
+    Open writing file and return file pointer.
+    An IOError is raised when the file cannot be opened.
+
+    Keyword arguments:
+    sequence -- the read bases aligned at a specific position
+    phred    -- the base qualities for the same position
+    info     -- a dictionary containing the information about the reference base,
+                the position, the chromosome and the number of bases
+    """
+
+    ref = info['ref']
+
+    # dictionary containing all (Phred score) tuple for each
+    # base of the sequence
+    letters = defaultdict(list)
+    lettersKeys = letters.keys()
+
+    sequence = sequence.upper()
+
+    # Offset used to obtain the Phred score
+    asciiOffset = 33
+
+    si = 0  # position in the sequence
+    pi = 0  # position in the sequence of phred scores
+
+    while(si < len(sequence)):
+        currentchar = sequence[si]
+        if currentchar == "," or currentchar == ".":
+            phredVal = ord(phred[pi]) - asciiOffset
+            letters[ref].append(phredVal)
+            si += 1
+            pi += 1
+        elif currentchar in lettersKeys:
+            phredVal = ord(phred[pi]) - asciiOffset
+            letters[currentchar].append(phredVal)
+            si += 1
+            pi += 1
+        elif currentchar == "+" or currentchar == "-":
+            letters['O'].append(-1)
+            res = match(r"[+-](\d+)", sequence[si:len(sequence)])
+            indelLength = res.groups()[0]
+            si = si + 1 + len(indelLength) + int(indelLength)
+            # No change in positionPhred because there is not Phred value for an indel
+        elif currentchar == ">" or currentchar == "<":
+            # Reference skip (CIGAR "N")
+            # Phred value available but skipped
+            # Mapq value available but skipped :wq
+            si += 1
+            pi += 1
+        elif currentchar == "$":
+            si += 1
+            # No change in positionPhred because there is not Phred value for
+            # the end of a sequence
+        elif currentchar == "*":
+            si += 1
+            # No change in positionPhred because there is not Phred value for
+            # the shadow of a deletion
+        elif currentchar == "^":
+            # The beginning is composed of 2 characters :
+            #     "^" followed by the Mapq value
+            si += 2
+            # No change in positionPhred because there is not Phred value
+            # for the beginning of a sequence
+        else:
+            print("Problem with letter: " + currentData)
+            print("in this cigar string: " + sequence)
+            sys.exit(2)
+
+    return(letters)
+```
+
